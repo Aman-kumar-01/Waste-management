@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waste Management - Residential Pickup</title>
+    <style>
+        /* General styling */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        h2 {
+            color: #2E7D32;
+            margin-top: 0;
+        }
+        
+        /* Button styling */
+        .pickup-btn {
+            display: inline-block;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: 600;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #4CAF50;
+            color: white;
+            margin-bottom: 30px;
+        }
+        
+        .pickup-btn:hover {
+            background-color: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .pickup-btn:active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Form container - initially hidden */
+        .pickup-form-container {
+            display: none;
+            margin-top: 20px;
+            padding: 30px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Form styling */
+        .pickup-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #555;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            transition: border 0.3s;
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            border-color: #4CAF50;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+        }
+        
+        .submit-btn {
+            background-color: #2E7D32;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        
+        .submit-btn:hover {
+            background-color: #1B5E20;
+        }
+        
+        /* Waste type options */
+        .waste-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .waste-option {
+            flex: 1 1 200px;
+        }
+        
+        .waste-option input {
+            display: none;
+        }
+        
+        .waste-option label {
+            display: block;
+            padding: 15px;
+            background-color: #e8f5e9;
+            border-radius: 4px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .waste-option input:checked + label {
+            background-color: #4CAF50;
+            color: white;
+        }
+        
+        /* Confirmation message */
+        .confirmation {
+            display: none;
+            padding: 20px;
+            background-color: #e8f5e9;
+            border-radius: 8px;
+            margin-top: 20px;
+            text-align: center;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .confirmation h3 {
+            color: #2E7D32;
+            margin-top: 0;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .pickup-form {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-group.full-width {
+                grid-column: span 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Residential Waste Management</h2>
+        <p>Schedule a pickup for your household waste with our convenient service.</p>
+        
+        <button class="pickup-btn" id="residentialPickup">
+            Schedule Residential Pickup
+        </button>
+        
+        <div class="pickup-form-container" id="pickupFormContainer">
+            <h3>Schedule Your Pickup</h3>
+            <p>Please fill out this form to schedule a residential waste pickup. Our team will contact you to confirm the details.</p>
+            
+            <form class="pickup-form" id="pickupForm">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="address">Street Address</label>
+                    <input type="text" id="address" name="address" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="date">Preferred Pickup Date</label>
+                    <input type="date" id="date" name="date" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="time">Preferred Time Window</label>
+                    <select id="time" name="time" required>
+                        <option value="">Select a time window</option>
+                        <option value="morning">Morning (8am-12pm)</option>
+                        <option value="afternoon">Afternoon (12pm-4pm)</option>
+                        <option value="evening">Evening (4pm-8pm)</option>
+                    </select>
+                </div>
+                
+                <div class="form-group full-width">
+                    <label>Type of Waste (Select all that apply)</label>
+                    <div class="waste-options">
+                        <div class="waste-option">
+                            <input type="checkbox" id="general" name="waste-type" value="general">
+                            <label for="general">General Waste</label>
+                        </div>
+                        <div class="waste-option">
+                            <input type="checkbox" id="recyclables" name="waste-type" value="recyclables">
+                            <label for="recyclables">Recyclables</label>
+                        </div>
+                        <div class="waste-option">
+                            <input type="checkbox" id="organic" name="waste-type" value="organic">
+                            <label for="organic">Organic Waste</label>
+                        </div>
+                        <div class="waste-option">
+                            <input type="checkbox" id="hazardous" name="waste-type" value="hazardous">
+                            <label for="hazardous">Hazardous Waste</label>
+                        </div>
+                        <div class="waste-option">
+                            <input type="checkbox" id="bulky" name="waste-type" value="bulky">
+                            <label for="bulky">Bulky Items</label>
+                        </div>
+                        <div class="waste-option">
+                            <input type="checkbox" id="electronic" name="waste-type" value="electronic">
+                            <label for="electronic">E-Waste</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group full-width">
+                    <label for="notes">Special Instructions</label>
+                    <textarea id="notes" name="notes" rows="3" placeholder="Any special instructions for our team..."></textarea>
+                </div>
+                
+                <div class="form-group full-width">
+                    <button type="submit" class="submit-btn">Submit Pickup Request</button>
+                </div>
+            </form>
+        </div>
+        
+        <div class="confirmation" id="confirmation">
+            <h3>Thank You for Your Request!</h3>
+            <p>Your residential waste pickup has been scheduled successfully.</p>
+            <p>A confirmation has been sent to your email address with all the details.</p>
+            <p>Our team will contact you if we need any additional information.</p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('residentialPickup').addEventListener('click', function() {
+            const formContainer = document.getElementById('pickupFormContainer');
+            const confirmation = document.getElementById('confirmation');
+            
+            // Toggle form visibility
+            if (formContainer.style.display === 'block') {
+                formContainer.style.display = 'none';
+            } else {
+                formContainer.style.display = 'block';
+                confirmation.style.display = 'none';
+            }
+        });
+        
+        document.getElementById('pickupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formContainer = document.getElementById('pickupFormContainer');
+            const confirmation = document.getElementById('confirmation');
+            
+            // Hide form and show confirmation
+            formContainer.style.display = 'none';
+            confirmation.style.display = 'block';
+            
+            // In a real application, you would send the form data to your server here
+            // For this demo, we'll just log the form data
+            const formData = new FormData(this);
+            const formValues = Object.fromEntries(formData.entries());
+            console.log('Form submitted:', formValues);
+            
+            // Reset the form for future use
+            this.reset();
+            
+            // Scroll to confirmation message
+            confirmation.scrollIntoView({ behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waste Management - Commercial Pickup</title>
+    <style>
+        /* General styling */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        h2 {
+            color: #1565C0;
+            margin-top: 0;
+        }
+        
+        /* Button styling */
+        .commercial-btn {
+            display: inline-block;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: 600;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #1976D2;
+            color: white;
+            margin-bottom: 30px;
+        }
+        
+        .commercial-btn:hover {
+            background-color: #1565C0;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .commercial-btn:active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Form container - initially hidden */
+        .commercial-form-container {
+            display: none;
+            margin-top: 20px;
+            padding: 30px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Form styling */
+        .commercial-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #555;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            transition: border 0.3s;
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            border-color: #1976D2;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(25, 118, 210, 0.2);
+        }
+        
+        .submit-btn {
+            background-color: #0D47A1;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        
+        .submit-btn:hover {
+            background-color: #1565C0;
+        }
+        
+        /* Waste type options */
+        .waste-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .waste-option {
+            flex: 1 1 200px;
+        }
+        
+        .waste-option input {
+            display: none;
+        }
+        
+        .waste-option label {
+            display: block;
+            padding: 15px;
+            background-color: #E3F2FD;
+            border-radius: 4px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .waste-option input:checked + label {
+            background-color: #1976D2;
+            color: white;
+        }
+        
+        /* Business type dropdown */
+        .business-type {
+            width: 100%;
+        }
+        
+        /* Frequency options */
+        .frequency-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        /* Confirmation message */
+        .commercial-confirmation {
+            display: none;
+            padding: 20px;
+            background-color: #E3F2FD;
+            border-radius: 8px;
+            margin-top: 20px;
+            text-align: center;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .commercial-confirmation h3 {
+            color: #1565C0;
+            margin-top: 0;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .commercial-form {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-group.full-width {
+                grid-column: span 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Commercial Waste Management</h2>
+        <p>Schedule regular pickups for your business waste with our reliable commercial service.</p>
+        
+        <button class="commercial-btn" id="commercialPickup">
+            Schedule Commercial Pickup
+        </button>
+        
+        <div class="commercial-form-container" id="commercialFormContainer">
+            <h3>Commercial Waste Pickup Request</h3>
+            <p>Please complete this form to arrange waste collection services for your business. Our commercial waste specialists will contact you to finalize your service plan.</p>
+            
+            <form class="commercial-form" id="commercialForm">
+                <div class="form-group">
+                    <label for="business-name">Business Name</label>
+                    <input type="text" id="business-name" name="business-name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="contact-name">Contact Person</label>
+                    <input type="text" id="contact-name" name="contact-name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="commercial-email">Email Address</label>
+                    <input type="email" id="commercial-email" name="commercial-email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="commercial-phone">Phone Number</label>
+                    <input type="tel" id="commercial-phone" name="commercial-phone" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="business-address">Business Address</label>
+                    <input type="text" id="business-address" name="business-address" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="business-type">Type of Business</label>
+                    <select id="business-type" name="business-type" class="business-type" required>
+                        <option value="">Select your business type</option>
+                        <option value="restaurant">Restaurant/Food Service</option>
+                        <option value="retail">Retail Store</option>
+                        <option value="office">Office Building</option>
+                        <option value="manufacturing">Manufacturing</option>
+                        <option value="medical">Medical Facility</option>
+                        <option value="school">School/University</option>
+                        <option value="hotel">Hotel/Hospitality</option>
+                        <option value="construction">Construction</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                
+                <div class="form-group full-width">
+                    <label>Type of Commercial Waste (Select all that apply)</label>
+                    <div class="waste-options">
+                        <div class="waste-option">
+                            <input type="checkbox" id="com-general" name="com-waste-type" value="general">
+                            <label for="com-general">General Waste</label>
+                        </div>
+                        <div class="waste-option">
+                            <input type="checkbox" id="com-recyclables" name="com-waste-type" value="recyclables">
+                            <label for="com-recyclables">Recyclables</label>
+                        </div>
+                        <div class="waste-option">
+                            <input type="checkbox" id="com-organic" name="com-waste-type" value="organic">
+                            <label for="com-organic">Organic/Food Waste</label>
+                        </div>
+                        <div class="waste-option">
+                            <input type="checkbox" id="com-hazardous" name="com-waste-type" value="hazardous">
+                            <label for="com-hazardous">Hazardous Waste</label>
+                        </div>
+                        <div class="waste-option">
+                            <input type="checkbox" id="com-pallets" name="com-waste-type" value="pallets">
+                            <label for="com-pallets">Pallets/Wood</label>
+                        </div>
+                        <div class="waste-option">
+                            <input type="checkbox" id="com-cardboard" name="com-waste-type" value="cardboard">
+                            <label for="com-cardboard">Cardboard</label>
+                        </div>
+                        <div class="waste-option">
+                            <input type="checkbox" id="com-electronic" name="com-waste-type" value="electronic">
+                            <label for="com-electronic">E-Waste</label>
+                        </div>
+                        <div class="waste-option">
+                            <input type="checkbox" id="com-industrial" name="com-waste-type" value="industrial">
+                            <label for="com-industrial">Industrial Waste</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="start-date">Preferred Start Date</label>
+                    <input type="date" id="start-date" name="start-date" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="service-frequency">Service Frequency</label>
+                    <select id="service-frequency" name="service-frequency" required>
+                        <option value="">Select frequency</option>
+                        <option value="daily">Daily</option>
+                        <option value="weekly">Weekly</option>
+                        <option value="bi-weekly">Twice Weekly</option>
+                        <option value="monthly">Monthly</option>
+                        <option value="custom">Custom Schedule</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="container-size">Preferred Container Size</label>
+                    <select id="container-size" name="container-size" required>
+                        <option value="">Select container size</option>
+                        <option value="2-yard">2 Yard Bin</option>
+                        <option value="4-yard">4 Yard Bin</option>
+                        <option value="6-yard">6 Yard Bin</option>
+                        <option value="8-yard">8 Yard Bin</option>
+                        <option value="compactor">Compactor</option>
+                        <option value="roll-off">Roll-Off Dumpster</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="estimated-volume">Estimated Monthly Volume (cubic yards)</label>
+                    <input type="number" id="estimated-volume" name="estimated-volume" min="1" required>
+                </div>
+                
+                <div class="form-group full-width">
+                    <label for="com-notes">Special Requirements</label>
+                    <textarea id="com-notes" name="com-notes" rows="3" placeholder="Any special requirements, access instructions, or additional services needed..."></textarea>
+                </div>
+                
+                <div class="form-group full-width">
+                    <button type="submit" class="submit-btn">Request Commercial Service</button>
+                </div>
+            </form>
+        </div>
+        
+        <div class="commercial-confirmation" id="commercialConfirmation">
+            <h3>Thank You for Your Commercial Service Request!</h3>
+            <p>Your commercial waste pickup request has been received successfully.</p>
+            <p>A dedicated account manager will contact you within 24 hours to discuss your requirements and finalize your service agreement.</p>
+            <p>We appreciate your business and look forward to serving your waste management needs.</p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('commercialPickup').addEventListener('click', function() {
+            const formContainer = document.getElementById('commercialFormContainer');
+            const confirmation = document.getElementById('commercialConfirmation');
+            
+            // Toggle form visibility
+            if (formContainer.style.display === 'block') {
+                formContainer.style.display = 'none';
+            } else {
+                formContainer.style.display = 'block';
+                confirmation.style.display = 'none';
+            }
+        });
+        
+        document.getElementById('commercialForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formContainer = document.getElementById('commercialFormContainer');
+            const confirmation = document.getElementById('commercialConfirmation');
+            
+            // Hide form and show confirmation
+            formContainer.style.display = 'none';
+            confirmation.style.display = 'block';
+            
+            // In a real application, you would send the form data to your server here
+            const formData = new FormData(this);
+            const formValues = Object.fromEntries(formData.entries());
+            console.log('Commercial form submitted:', formValues);
+            
+            // Reset the form for future use
+            this.reset();
+            
+            // Scroll to confirmation message
+            confirmation.scrollIntoView({ behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colorful Login Form</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .login-container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            text-align: center;
+            width: 320px;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        h2 {
+            color: #4a4a4a;
+            margin-bottom: 25px;
+            font-size: 28px;
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .input-field {
+            width: 100%;
+            padding: 12px 15px;
+            margin: 10px 0;
+            border: 2px solid #ddd;
+            border-radius: 25px;
+            font-size: 14px;
+            transition: all 0.3s;
+            box-sizing: border-box;
+        }
+        .input-field:focus {
+            border-color: #feb47b;
+            outline: none;
+            box-shadow: 0 0 8px rgba(254, 180, 123, 0.5);
+        }
+        .btn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 10px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .btn:hover {
+            background: linear-gradient(to right, #feb47b, #ff7e5f);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+        }
+        .btn:active {
+            transform: translateY(0);
+        }
+        .error {
+            color: #ff4757;
+            font-size: 13px;
+            display: none;
+            text-align: left;
+            margin-left: 15px;
+            margin-top: -5px;
+            margin-bottom: 5px;
+        }
+        .input-container {
+            position: relative;
+            margin-bottom: 15px;
+        }
+        .input-container i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #888;
+        }
+        .input-field.with-icon {
+            padding-left: 40px;
+        }
+        .forgot-pass {
+            display: block;
+            text-align: right;
+            margin-top: 5px;
+            color: #888;
+            font-size: 13px;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .forgot-pass:hover {
+            color: #ff7e5f;
+        }
+        .social-login {
+            margin-top: 20px;
+        }
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .social-icon:hover {
+            transform: scale(1.1);
+        }
+        .facebook { background: #3b5998; }
+        .google { background: #dd4b39; }
+        .twitter { background: #1da1f2; }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <div class="login-container">
+        <h2>Welcome Back!</h2>
+        
+        <div class="input-container">
+            <i class="fas fa-user"></i>
+            <input type="text" id="username" class="input-field with-icon" placeholder="Username">
+        </div>
+        <span id="user-error" class="error">Username is required</span>
+        
+        <div class="input-container">
+            <i class="fas fa-lock"></i>
+            <input type="password" id="password" class="input-field with-icon" placeholder="Password">
+        </div>
+        <span id="pass-error" class="error">Password is required</span>
+        
+        <a href="#" class="forgot-pass">Forgot password?</a>
+        
+        <button class="btn" onclick="validateForm()">Login</button>
+        
+        <div class="social-login">
+            <p>Or login with</p>
+            <div class="social-icons">
+                <div class="social-icon facebook"><i class="fab fa-facebook-f"></i></div>
+                <div class="social-icon google"><i class="fab fa-google"></i></div>
+                <div class="social-icon twitter"><i class="fab fa-twitter"></i></div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function validateForm() {
+            let username = document.getElementById("username").value;
+            let password = document.getElementById("password").value;
+            let userError = document.getElementById("user-error");
+            let passError = document.getElementById("pass-error");
+            
+            userError.style.display = username ? "none" : "block";
+            passError.style.display = password ? "none" : "block";
+            
+            if (username && password) {
+                // Add a fun animation before showing the alert
+                const btn = document.querySelector('.btn');
+                btn.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    btn.style.transform = 'scale(1)';
+                    alert("Login Successful! 🎉");
+                }, 200);
+            }
+        }
+        
+        // Add focus effects
+        document.querySelectorAll('.input-field').forEach(input => {
+            input.addEventListener('focus', function() {
+                this.parentElement.querySelector('i').style.color = '#ff7e5f';
+            });
+            input.addEventListener('blur', function() {
+                this.parentElement.querySelector('i').style.color = '#888';
+            });
+        });
+    </script>
+</body>
+</html>

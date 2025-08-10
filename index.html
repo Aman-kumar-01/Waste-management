@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waste Management - AI Powered</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="secnd.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="otherservice.css">
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <h1>Waste Management</h1>
+            <div class="nav-links">
+                <a href="login.html"><span>Login</span> </a>
+
+                <a href="signup.html"><span>Signup</span></a>
+            </div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Solutions</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">More</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="hero-sec-img">
+        <section class="hero">
+            <h2>Revolutionizing Waste Management</h2>
+            <p>Innovative solutions for a cleaner, sustainable future.</p>
+            <a href="#" class="btn">Join the Movement</a>
+        </section>
+    </div>
+
+
+    <!-- Find Clean Earth Services -->
+
+
+    <div class="container">
+        <section>
+            <h2>Find Clean Earth Services</h2>
+            <div class="services1">
+                <div class="service-card1">
+                    <h3>Residential Waste Pickup</h3>
+                    <p>Clean Earth's curbside trash and recycling pickup is the best choice for your home, and for the
+                        environment.</p>
+                    <a href="residental.html" class="cta-button">Get Residential Waste Service</a>
+                </div>
+                <div class="service-card1">
+                    <h3>Commercial Waste Pickup</h3>
+                    <p>Clean Earth's business trash and recycling pickup is the best choice for your organization, and
+                        for the environment.</p>
+                    <a href="commercial.html" class="cta-button">Get Commercial Waste Service</a>
+                </div>
+                <div class="service-card1">
+                    <h3>Roll-Off Dumpster Rental</h3>
+                    <p>From quick cleanouts to major renovations, Clean Earth has a dumpster that's perfect for your
+                        project.</p>
+                    <a href="rentrollof.html" class="cta-button">Rent a Roll-Off Dumpster</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+   
+<!-- Services Section -->
+<section id="services" class="services">
+    <h2 class="service-card">Learning Section</h2>
+    <div class="service-grid">
+      <article class="service-card">
+        <h3>Smart Bin Monitoring</h3>
+        <img src="smart bin.avif" height="150px" alt="" srcset="">
+        <p>Real-time fill level monitoring for efficient collection.</p>
+        <a href="https://www.researchgate.net/publication/321725917_Smart_Bin_Internet-of-Things_Garbage_Monitoring_System" class="btn">Learn More</a>
+      </article>
+      <article class="service-card">
+        <h3>Recycling Solutions</h3>
+        <img src="recccc - Copy.jpg" height="200px" alt="" srcset="">
+        <p>Advanced sorting and recycling technologies.</p>
+        <a href="https://www.suez.com/en/waste" class="btn">Learn More</a>
+      </article>
+      <article class="service-card">
+        <h3>Route Optimization</h3>
+        <img src="route.jpg" height="200px" alt="" srcset="">
+        <p>AI-powered collection route planning.</p>
+        <a href="https://smartroutes.io/blogs/route-optimization-for-solid-waste-collection/" class="btn">Learn More</a>
+      </article>
+      <article class="service-card">
+        <h3>Waste Analytics</h3>
+        <img src="analyze.webp" height="170px" alt="" srcset="">
+        <p>Data-driven insights for better waste management.</p>
+        <a href="https://www.analytik-jena.in/industries-solutions/industries/environment/waste-analysis/" class="btn">Learn More</a>
+      </article>
+    </div>
+  </section>
+
+     
+
+
+    <!-- live monitoring -->
+
+
+    <section id="monitoring" class="monitoring">
+        <h2>Live Waste Monitoring</h2>
+        <div class="dashboard">
+            <div class="map-container">
+                <div id="waste-map" style="height: 500px; width: 100%;"></div>
+                <div class="map-legend">
+                    <div><span class="legend-green"></span> Empty</div>
+                    <div><span class="legend-yellow"></span> Half Full</div>
+                    <div><span class="legend-red"></span> Needs Collection</div>
+                </div>
+            </div>
+            <div class="stats-container">
+                <div class="stat-card">
+                    <h4>Bins Monitored</h4>
+                    <p class="stat-value">1,247</p>
+                </div>
+                <div class="stat-card">
+                    <h4>Collections Today</h4>
+                    <p class="stat-value">83</p>
+                </div>
+                <div class="stat-card">
+                    <h4>Recycling Rate</h4>
+                    <p class="stat-value">68%</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="chat-section">
+        <h2>AI-Powered Waste Management Assistant</h2>
+        <p>Ask your waste management questions, and our AI will respond.</p>
+        <div class="chat-container">
+            <input type="text" id="chat-input" placeholder="Ask AI about waste management...">
+            <button id="chat-btn">Ask</button>
+        </div>
+        <div class="chat-results" id="chat-results">
+            <p>AI responses will appear here.</p>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <form id="contact-form">
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea placeholder="Your Message" rows="5" required></textarea>
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+
+    <!-- footer -->
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section about">
+                <h3>Smart Waste Management</h3>
+                <p>Transforming waste collection through IoT and AI technologies for a cleaner, more sustainable future.
+                </p>
+            </div>
+            <div class="footer-section links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#monitoring">Live Monitoring</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section social">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/wastewarriors0" target="_blank" aria-label="Facebook"><img
+                            src="fbimage.avif" alt="Facebook"></a>
+                    <a href="https://twitter.com/WAMCOmv" target="_blank" aria-label="Twitter"><img src="twtimg.jpg"
+                            alt="Twitter"></a>
+                    <a href="https://www.instagram.com/wastemanagement/?hl=en" target="_blank"
+                        aria-label="Instagram"><img src="instaimg.webp" alt="Instagram"></a>
+                    <a href="https://www.linkedin.com/company/wasteless" target="_blank" aria-label="LinkedIn"><img
+                            src="linkimg.png" alt="LinkedIn"></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 Smart Waste Management. All rights reserved.</p>
+            <p class="sustainability">We're committed to sustainable digital practices.</p>
+        </div>
+        
+    </footer>
+
+    <script>
+        var map = L.map('waste-map').setView([28.6139, 77.2090], 12);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+
+        var bins = [
+            { lat: 28.6139, lng: 77.2090, status: 'green' },
+            { lat: 28.6200, lng: 77.2000, status: 'yellow' },
+            { lat: 28.6300, lng: 77.1950, status: 'red' }
+        ];
+
+        bins.forEach(bin => {
+            L.circleMarker([bin.lat, bin.lng], {
+                color: bin.status,
+                radius: 8
+            }).addTo(map);
+        });
+    </script>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
